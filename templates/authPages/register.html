@@ -1,12 +1,26 @@
 {% extends 'authPages/base.html' %}
 
+{% block auth_content %}
 
-{% block content %}
+<div class="auth-form-wrapper">
+    <form class="auth-form" method="POST">
+        {% csrf_token %}
+        <h2>Create Account</h2>
 
+        <input type="email" name="email" placeholder="Email Address" class="auth-input" required>
+        <input type="text" name="username" placeholder="Username" class="auth-input" required>
+        <input type="password" name="password" placeholder="Password" class="auth-input" required>
 
-<h1>
-    Register
-</h1>
+        <label for="birth-date" class="auth-label">Date of Birth</label>
+        <input type="date" id="birth-date" name="birth_date" class="auth-input birth-date-input">
 
+        <button type="submit" class="auth-btn">
+            Register
+        </button>
+        <span class="auth-note">
+            Already have an account? <a href="{% url 'login' %}">Sign In</a>
+        </span>
+    </form>
+</div>
 
 {% endblock %}

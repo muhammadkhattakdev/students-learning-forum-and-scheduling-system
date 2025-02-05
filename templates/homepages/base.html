@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'homepagesStyling.css' %}">
+    <title>Rugby School</title>
+</head>
+<body>
+
+    <div class="homepages-wrapper">
+        <div class="navbar-2">
+            <h1 class="logo">
+                LogoHere
+            </h1>
+            <div class="links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="{% url 'forum_homepage' %}" class="nav-link">Forum</a>
+                <a href="#" class="nav-link">Timetable</a>
+            </div>
+            <div class="profile-info">
+                <img src="{% static 'images/dummyProfile.png' %}" alt="Dummy Profile Image">
+            </div>
+        </div>
+    </div>
+
+
+    {% block student_content %}
+
+    {% endblock %}
+    
+</body>
+</html>

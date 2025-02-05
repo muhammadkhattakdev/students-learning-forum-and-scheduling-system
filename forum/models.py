@@ -7,7 +7,7 @@ from django.utils.timezone import now
 
 
 class ForumModerator(models.Model):
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Related User Model')
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, verbose_name='Related User Model')
 
     def __str__(self):
 
@@ -15,7 +15,7 @@ class ForumModerator(models.Model):
 
 class ForumPost(models.Model):
     user = models.ForeignKey(
-        to=User, 
+        to=CustomUser, 
         on_delete=models.CASCADE, 
         verbose_name='Related User',
         related_name='forum_posts'
@@ -23,12 +23,12 @@ class ForumPost(models.Model):
     content = models.TextField(verbose_name='Post Content')
     
     upvote_users = models.ManyToManyField(
-        to=User, 
+        to=CustomUser, 
         verbose_name="Users Who Upvoted", 
         related_name="upvoted_posts"
     )
     downvote_users = models.ManyToManyField(
-        to=User, 
+        to=CustomUser, 
         verbose_name="Users Who Downvoted", 
         related_name="downvoted_posts"
     )
@@ -43,12 +43,11 @@ class ForumPost(models.Model):
 
 class ForumPostReply(models.Model):
 
-    user = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name='Related User Model')
+    user = models.ForeignKey(to=CustomUser, on_delete=models.CASCADE, verbose_name='Related User Model')
     content = models.TextField()
 
     post = models.ForeignKey(to=ForumPost, on_delete=models.CASCADE, verbose_name='Related Post')
 
     def __str__(self):
 
-        return 
-
+        return

@@ -1,16 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Forum</title>
+    <title>School Forum</title>
 </head>
 <body>
 
 
-    {% block forum_content %}
+    <div class="forum-pages-wrapper">
 
-    {% endblock %}
+        <div class="navbar-3">
+            <h1 class="logo">
+                LogoHere
+            </h1>
+            <div class="right-side">
+                <div class="icons">
+                    <a href="#">
+                        <i class="fa fa-bell"></i>
+                    </a>
+                </div>
+                <div class="profile-info">
+                    <img src="{% static 'images/dummyProfile.png' %}" alt="" class="profile-img">
+                </div>
+            </div>
+        </div>
+
+        {% block forum_content %}
+        
+        {% endblock %}
+    </div>
     
 </body>
 </html>

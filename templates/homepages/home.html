@@ -1,0 +1,20 @@
+{% extends 'homepages/base.html' %}
+
+
+
+{% block student_content %}
+{% load static %}
+
+
+<div class="homepage-wrapper">
+    <div class="left-side">
+        <div class="profile-info">
+            <img src="{% static 'images/dummyProfile.png' %}" alt="dummy profile image">
+            <h1>Welcome {{request.user.username}}!</h1>
+        </div>
+    </div>
+    <div class="right-side">
+    </div>
+</div>
+
+{% endblock %}

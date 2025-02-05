@@ -19,7 +19,11 @@ INSTALLED_APPS = [
 
     'auth_app', 
     'forum',
+    'scheduling_app',
 ]
+
+AUTH_USER_MODEL = 'auth_app.CustomUser'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
