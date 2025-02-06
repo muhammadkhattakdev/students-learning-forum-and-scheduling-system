@@ -21,7 +21,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Poppins';
+    font-family: 'Nunito';
 }
 
 .forum-pages-wrapper {
@@ -34,5 +34,129 @@
     width: 100%;
     display: flex;
     background-color: var(--background);      
-    padding: .3rem 2rem;
+    padding: .3rem 3rem;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.forum-pages-wrapper .navbar-3 .logo {
+    color: var(--primary-color);
+}
+
+.forum-pages-wrapper .navbar-3 .right-side .profile-info img {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+/* FORUM HOMEPAGE STYLING STARTS HERE  */
+
+.forum-homepage-wrapper {
+    display: flex;
+    padding: 2rem 3rem;
+    flex-direction: column;
+    
+}
+
+.forum-homepage-wrapper .top-bar {
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    
+    justify-content: space-between;
+}
+
+.forum-homepage-wrapper .top-bar a.write-btn {
+    color: var(--text-color);
+    box-shadow: 0px 0px 1px var(--text-color);
+    padding: 1rem;
+    border-radius: 6px;
+}
+
+.forum-homepage-wrapper .top-bar a.write-btn:hover {
+    color: white;
+    background-color: var(--accent);
+    box-shadow: 0px 0px 1px var(--accent);
+}
+
+.forum-homepage-wrapper .top-bar .user-info {
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+}
+.forum-homepage-wrapper .posts-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.forum-homepage-wrapper .top-bar .user-info img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.forum-homepage-wrapper .left-side {
+    width: 72%;   
+    padding: 2rem;
+}
+
+.forum-homepage-wrapper .left-side .posts {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.forum-homepage-wrapper .left-side .posts .post {
+    width: 100%;
+    box-shadow: 0px 0px 1px var(--text-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: var(--text-color);
+}
+
+.forum-homepage-wrapper .left-side .posts .post:hover {
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.forum-homepage-wrapper .right-side {
+    padding: 2rem;
+    box-shadow: 0px 0px 1px var(--text-color);
+    border-radius: 8px;
+    flex: 1;
+}
+
+.forum-homepage-wrapper .right-side .posts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.forum-homepage-wrapper .right-side .posts .post {
+    width: 100%;
+    box-shadow: 0px 0px 1px var(--text-color);
+    color: var(--text-color);
+    padding: .7rem;
+    border-radius: 8px;
+}
+
+.forum-homepage-wrapper .right-side .posts .post:hover {
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;   
+    font-family: 'Nunito';
+}
+
+
+/* WRITE POST PAGE STYLING STARTS HERE  */
+
+
+

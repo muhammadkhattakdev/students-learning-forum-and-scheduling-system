@@ -2,7 +2,44 @@
 
 
 {% block forum_content %}
+{% load static %}
 
-<h1>Hello Mom!</h1>
+
+<div class="forum-homepage-wrapper">
+    <h1>School Forum</h1>
+    <div class="top-bar">
+        <a href="#" class="write-btn">
+            Write Something
+        </a>
+        <div class="user-info">
+            <h3>{{request.user.username}}</h3>
+            <img src="{% static 'images/dummyProfile.png' %}" alt="">
+        </div>
+    </div>
+    <div class="posts-wrapper">
+        <div class="left-side">
+            <h2>Latest Posts</h2>
+            <div class="posts">
+                <a href="#" class="post">
+                    <h3>Here is what you need to do to become a good man!</h3>
+                </a>
+                <a href="#" class="post">
+                    <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure totam laboriosam voluptas iste. Sequi similique at natus iste unde temporibus!</h3>
+                </a>
+            </div>
+        </div>
+        <div class="right-side">
+            <h2>Most Popular</h2>
+            <div class="posts">
+                <a href="#2" class="post">
+                    <h4>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, veritatis?
+                    </h4>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
