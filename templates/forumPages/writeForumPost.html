@@ -70,14 +70,16 @@
   <h1>Write a Forum Post</h1>
 
   <!-- Editor Container -->
-  <div id="editor">
-    <p>Start writing your post...</p>
-  </div>
+  
 
   <!-- Save Button Form -->
   <form id="post-form" method="POST">
     {% csrf_token %}
+    <input type="text" placeholder="Enter Post Title" class="post-title" name="post-title">
     <input type="hidden" name="content" id="content-input">
+    <div id="editor">
+      <p>Start writing your post...</p>
+    </div>
     <div class="button-wrapper">
       <button type="submit" class="save-button">Save Post</button>
     </div>

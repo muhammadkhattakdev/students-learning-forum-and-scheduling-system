@@ -1,0 +1,159 @@
+{% extends 'forumPages/base.html' %}
+
+
+{% block forum_content %}
+{% load static %}
+
+
+<div class="read-post-page-wrapper">
+    <div class="top-bar">
+        <a href="{% url 'write_post' %}" class="write-btn">
+            Write Something
+        </a>
+        <div class="user-info">
+            <h3>{{request.user.username}}</h3>
+            <img src="{% static 'images/dummyProfile.png' %}" alt="">
+        </div>
+    </div>
+
+    <div class="post-wrapper">
+        <div class="left-side">
+            <div class="post">
+                <h2 class="title">{{post.title}}</h2>
+                <div class="post-content">
+                    {{post.content|safe}}
+                </div>
+                <div class="post-controls">
+                    <input placeholder="Write a reply..." type="text">
+                    <div class="btns">
+                        <button class="upvote-btn">
+                            Up
+                        </button>
+                        <button class="downvote-btn">Down</button>
+                    </div>
+                </div>
+            </div>
+            <div class="post-replies">
+                {% for reply in related_replies %}
+                <div class="post-reply">
+                    <div class="username">
+                        {{reply.user.username}}
+                    </div>
+                    <div class="reply-content">
+                        {{reply.content}}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="right-side">
+            <h2>Most Popular</h2>
+            <div class="posts">
+                {% for post in top_posts %}
+                <a href="{% url 'read_post' %}?post_id={{post.id}}" class="post">
+                    <h4>
+                        {{post.title}}
+                    </h4>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get elements for upvote, downvote, and reply
+  const upvoteBtn = document.querySelector(".upvote-btn");
+  const downvoteBtn = document.querySelector(".downvote-btn");
+  const replyInput = document.querySelector(".post-controls input");
+  const postId = "{{ post.id }}"; // Replace with actual post ID
+
+  // Upvote function
+  upvoteBtn.addEventListener("click", async () => {
+    try {
+      const response = await fetch(`{% url 'upvote_post' post_id=post.id %}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCSRFToken(),
+        },
+      });
+      if (response.ok) {
+        alert("Post upvoted successfully!");
+      } else {
+        alert("Error upvoting the post.");
+      }
+    } catch (error) {
+      console.error("Upvote error:", error);
+    }
+  });
+
+  // Downvote function
+  downvoteBtn.addEventListener("click", async () => {
+    try {
+      const response = await fetch(`{% url 'downvote_post' post_id=post.id %}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": getCSRFToken(),
+        },
+      });
+      if (response.ok) {
+        alert("Post downvoted successfully!");
+      } else {
+        alert("Error downvoting the post.");
+      }
+    } catch (error) {
+      console.error("Downvote error:", error);
+    }
+  });
+
+  // Add reply function
+  replyInput.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter" && replyInput.value.trim()) {
+      try {
+        const replyContent = replyInput.value.trim();
+        const response = await fetch(`{% url 'add_reply' post_id=post.id %}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(),
+          },
+          body: JSON.stringify({ content: replyContent }),
+        });
+        if (response.ok) {
+          alert("Reply added successfully!");
+          replyInput.value = ""; // Clear the input field
+        } else {
+          alert("Error adding the reply.");
+        }
+      } catch (error) {
+        console.error("Reply error:", error);
+      }
+    }
+  });
+
+  // Helper function to get CSRF token from cookies
+  function getCSRFToken() {
+    const csrfToken = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("csrftoken="))
+      ?.split("=")[1];
+    return csrfToken || "";
+  }
+});
+
+
+
+
+    
+</script>
+
+
+
+{% endblock %}

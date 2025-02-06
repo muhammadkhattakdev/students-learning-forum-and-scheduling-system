@@ -20,3 +20,7 @@ class ForumPostAdmin(admin.ModelAdmin):
     search_fields = ['content',]
     readonly_fields = ('upvote_users', 'downvote_users')
     
+@admin.register(ForumPostReply)
+class ForumPostReplyAdmin(admin.ModelAdmin):
+
+    list_display = ['user',]

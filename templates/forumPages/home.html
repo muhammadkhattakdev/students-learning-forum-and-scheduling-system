@@ -21,8 +21,8 @@
             <h2>Latest Posts</h2>
             <div class="posts">
                 {% for post in posts %}
-                <a href="#" class="post">
-                    <h3>{{post.content|safe}}</h3>
+                <a href="{% url 'read_post' %}?post_id={{post.id}}" class="post">
+                    <h3>{{post.title}}</h3>
                 </a>
                 {% endfor %}
             </div>
@@ -43,11 +43,13 @@
         <div class="right-side">
             <h2>Most Popular</h2>
             <div class="posts">
-                <a href="#2" class="post">
+                {% for post in top_posts %}
+                <a href="{% url 'read_post' %}?post_id={{post.id}}" class="post">
                     <h4>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, veritatis?
+                        {{post.title}}
                     </h4>
                 </a>
+                {% endfor %}
             </div>
         </div>
     </div>

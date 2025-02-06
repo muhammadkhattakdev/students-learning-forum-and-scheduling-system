@@ -14,6 +14,7 @@ class ForumModerator(models.Model):
         return self.user.email
 
 class ForumPost(models.Model):
+    title = models.CharField(max_length=500, verbose_name='Post Title', null=False, default='')
     user = models.ForeignKey(
         to=CustomUser, 
         on_delete=models.CASCADE, 
@@ -48,6 +49,3 @@ class ForumPostReply(models.Model):
 
     post = models.ForeignKey(to=ForumPost, on_delete=models.CASCADE, verbose_name='Related Post')
 
-    def __str__(self):
-
-        return
