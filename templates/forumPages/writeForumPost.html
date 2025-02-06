@@ -1,33 +1,103 @@
-{% extends 'forumPages/base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Forum - Write a Post</title>
 
-{% block content %}
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <!-- Quill Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'forumStyling.css' %}">
+
+  <style>
+    /* Basic Page Styling */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .write-post-page-wrapper {
+      max-width: 800px;
+      margin: 50px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #editor {
+      height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+    }
+
+    .button-wrapper {
+      margin-top: 15px;
+      text-align: right;
+    }
+
+    .save-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .save-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+{% include 'forumPages/navbar.html' %}
 
 <div class="write-post-page-wrapper">
-    <h2>Write a Forum Post</h2>
-    <form id="post-form" action="{% url 'create_forum_post' %}" method="POST">
-        {% csrf_token %}
-        
-        <div id="editor-container" style="height: 300px; border: 1px solid #ccc;"></div>
-        
-        <!-- Hidden input to store editor content -->
-        <input type="hidden" name="content" id="content-input">
-        
-        <button type="submit" class="btn-submit">Submit Post</button>
-    </form>
+  <h1>Write a Forum Post</h1>
+
+  <!-- Editor Container -->
+  <div id="editor">
+    <p>Start writing your post...</p>
+  </div>
+
+  <!-- Save Button Form -->
+  <form id="post-form" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="content" id="content-input">
+    <div class="button-wrapper">
+      <button type="submit" class="save-button">Save Post</button>
+    </div>
+  </form>
 </div>
 
-<script>
-    var quill = new Quill('#editor-container', {
-        theme: 'snow'
-    });
+<!-- Quill Library -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 
-    // Update the hidden input before submitting the form
-    document.getElementById('post-form').onsubmit = function () {
-        document.getElementById('content-input').value = quill.root.innerHTML;
-    };
+<script>
+  // Initialize Quill editor
+  const quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+
+  // Save content to hidden input before form submission
+  document.getElementById('post-form').onsubmit = function () {
+    document.getElementById('content-input').value = quill.root.innerHTML;
+  };
 </script>
 
-{% endblock %}
+</body>
+</html>

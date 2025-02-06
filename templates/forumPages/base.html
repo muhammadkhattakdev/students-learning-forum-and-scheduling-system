@@ -5,27 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'forumStyling.css' %}">
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
     <title>School Forum</title>
 </head>
 <body>
 
     <div class="forum-pages-wrapper">
 
-        <div class="navbar-3">
-            <h1 class="logo">
-                LogoHere
-            </h1>
-            <div class="right-side">
-                <div class="icons">
-                    <a href="#">
-                        <i class="fa fa-bell"></i>
-                    </a>
-                </div>
-                <div class="profile-info">
-                    <img src="{% static 'images/dummyProfile.png' %}" alt="" class="profile-img">
-                </div>
-            </div>
-        </div>
+        {% include 'forumPages/navbar.html' %}
 
         {% block forum_content %}
         

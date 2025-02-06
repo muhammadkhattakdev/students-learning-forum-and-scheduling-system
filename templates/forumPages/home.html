@@ -8,7 +8,7 @@
 <div class="forum-homepage-wrapper">
     <h1>School Forum</h1>
     <div class="top-bar">
-        <a href="#" class="write-btn">
+        <a href="{% url 'write_post' %}" class="write-btn">
             Write Something
         </a>
         <div class="user-info">
@@ -20,12 +20,24 @@
         <div class="left-side">
             <h2>Latest Posts</h2>
             <div class="posts">
+                {% for post in posts %}
                 <a href="#" class="post">
-                    <h3>Here is what you need to do to become a good man!</h3>
+                    <h3>{{post.content|safe}}</h3>
                 </a>
-                <a href="#" class="post">
-                    <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure totam laboriosam voluptas iste. Sequi similique at natus iste unde temporibus!</h3>
-                </a>
+                {% endfor %}
+            </div>
+            <div class="pagination-controls">
+                {% if posts.has_previous %}
+                    <a href="?page=1">First</a>
+                    <a href="?page={{ posts.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                <span class="pagination-info">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+                
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">Next</a>
+                    <a href="?page={{ posts.paginator.num_pages }}">Last</a>
+                {% endif %}
             </div>
         </div>
         <div class="right-side">

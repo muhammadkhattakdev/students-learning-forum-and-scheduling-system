@@ -1,0 +1,59 @@
+{% extends 'authPages/base.html' %}
+
+{% block auth_content %}
+<div class="profile-page-wrapper">
+
+    <div class="profile-wrapper">
+        <h2>User Profile</h2>
+        <form method="POST" class="profile-form">
+            {% csrf_token %}
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}">
+
+            <label for="date_of_birth">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" value="{{ user.date_of_birth|date:'Y-m-d' }}">
+
+            <label for="password">New Password (optional):</label>
+            <input type="password" id="password" name="password" placeholder="Leave blank to keep the current password">
+
+            <button type="submit" class="update-btn">Update Profile</button>
+        </form>
+    </div>
+
+    <div class="user-posts-wrapper">
+        <h2>Your Forum Posts</h2>
+        <table class="user-posts-table">
+            <thead>
+                <tr>
+                    <th>Content</th>
+                    <th>Timestamp</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in forum_posts %}
+                <tr>
+                    <td>{{ post.content|safe|truncatewords:10 }}</td>
+                    <td>{{ post.date_time|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        {% if post.approve %}
+                            <span class="approve-bg">Approved</span>
+                        {% else %}
+                            <span class="pending-bg">Pending</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No posts found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

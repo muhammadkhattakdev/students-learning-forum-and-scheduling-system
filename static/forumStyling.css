@@ -30,7 +30,7 @@
     flex-direction: column;
 }
 
-.forum-pages-wrapper .navbar-3 {
+.navbar-3 {
     width: 100%;
     display: flex;
     background-color: var(--background);      
@@ -39,11 +39,11 @@
     align-items: center;
 }
 
-.forum-pages-wrapper .navbar-3 .logo {
+.navbar-3 .logo {
     color: var(--primary-color);
 }
 
-.forum-pages-wrapper .navbar-3 .right-side .profile-info img {
+.navbar-3 .right-side .profile-info img {
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 50%;
@@ -116,6 +116,7 @@
     padding: 1.5rem;
     border-radius: 8px;
     color: var(--text-color);
+    font-size: 15px !important;
 }
 
 .forum-homepage-wrapper .left-side .posts .post:hover {
@@ -155,8 +156,35 @@
     font-family: 'Nunito';
 }
 
+.pagination-controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2rem;
+    align-items: center;
+    gap: 15px;
+}
+
+.pagination-controls a {
+    color: var(--text-color);
+    border-radius: 3px;
+    border: 1px solid var(--text-color);
+    padding: 5px;
+    
+}
 
 /* WRITE POST PAGE STYLING STARTS HERE  */
+
+.write-post-page-wrapper {
+    width: 100%;
+}
+
+.write-post-page-wrapper #editor {
+    width: 50%;
+}
+
+
 
 
 

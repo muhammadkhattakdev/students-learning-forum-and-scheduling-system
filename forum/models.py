@@ -11,7 +11,7 @@ class ForumModerator(models.Model):
 
     def __str__(self):
 
-        return self.user.first_name
+        return self.user.email
 
 class ForumPost(models.Model):
     user = models.ForeignKey(
@@ -38,7 +38,7 @@ class ForumPost(models.Model):
 
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+        return self.user.email
 
 
 class ForumPostReply(models.Model):
