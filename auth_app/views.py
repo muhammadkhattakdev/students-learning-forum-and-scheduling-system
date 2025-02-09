@@ -51,41 +51,15 @@ def register(request):
     return render(request, 'authPages/register.html')
 
 
-# @login_required
-# def profile_page(request):
-#     user = request.user
-
-#     if request.method == 'POST':
-#         email = request.POST.get('email')
-#         username = request.POST.get('username')
-#         date_of_birth = request.POST.get('date_of_birth')
-#         password = request.POST.get('password')
-
-#         if email:
-#             user.email = email
-#         if username:
-#             user.username = username
-#         if date_of_birth:
-#             user.date_of_birth = date_of_birth
-#         if password:
-#             user.set_password(password)
-
-#         user.save()
-#         messages.success(request, "Your profile has been updated successfully!")
-#         return redirect('user_profile')
-
-#     return render(request, 'authPages/profile.html', {'user': user})
-
-
 @login_required
 def profile_page(request):
     user = request.user
-
     if request.method == 'POST':
         email = request.POST.get('email')
         username = request.POST.get('username')
         date_of_birth = request.POST.get('date_of_birth')
         password = request.POST.get('password')
+
 
         if email:
             user.email = email
@@ -100,10 +74,11 @@ def profile_page(request):
         messages.success(request, "Your profile has been updated successfully!")
         return redirect('user_profile')
 
+    user_is_moderator = ForumModerator.objects.filter(user=request.user).exists()
     # Fetching user's forum posts
     forum_posts = ForumPost.objects.filter(user=user).order_by('-date_time')
 
-    return render(request, 'authPages/profile.html', {'user': user, 'forum_posts': forum_posts})
+    return render(request, 'authPages/profile.html', {'user': user, 'user_is_moderator' : user_is_moderator,  'forum_posts': forum_posts})
 
 
 

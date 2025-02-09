@@ -71,9 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const upvoteBtn = document.querySelector(".upvote-btn");
   const downvoteBtn = document.querySelector(".downvote-btn");
   const replyInput = document.querySelector(".post-controls input");
-  const postId = "{{ post.id }}"; // Replace with actual post ID
+  const postId = "{{ post.id }}"; 
 
-  // Upvote function
   upvoteBtn.addEventListener("click", async () => {
     try {
       const response = await fetch(`{% url 'upvote_post' post_id=post.id %}`, {
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Downvote function
   downvoteBtn.addEventListener("click", async () => {
     try {
       const response = await fetch(`{% url 'downvote_post' post_id=post.id %}`, {
@@ -113,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Add reply function
   replyInput.addEventListener("keydown", async (event) => {
     if (event.key === "Enter" && replyInput.value.trim()) {
       try {
@@ -128,9 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         if (response.ok) {
           alert("Reply added successfully!");
-          replyInput.value = ""; // Clear the input field
+          replyInput.value = "";
+          window.location.reload();
         } else {
           alert("Error adding the reply.");
+          
         }
       } catch (error) {
         console.error("Reply error:", error);
@@ -138,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Helper function to get CSRF token from cookies
   function getCSRFToken() {
     const csrfToken = document.cookie
       .split("; ")

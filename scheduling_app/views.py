@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 def homepage(request):
     context = {}
 
-    return render(request, 'homepages/home.html', context)
+    return render(request, 'schedule_app_pages/home.html', context)
 
 
 

@@ -21,7 +21,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Poppins';
+    font-family: 'Nunito';
 }
 
 .navbar-2 {
@@ -85,4 +85,5 @@
     flex: 1;
     padding: 2rem;
 }
+
 

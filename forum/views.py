@@ -10,7 +10,7 @@ def forum_home(request):
     posts = ForumPost.objects.all().order_by('-date_time')
     
     # Create paginator with 10 posts per page
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 10)
     
     # Get the current page number from the request
     page_number = request.GET.get('page')
@@ -129,4 +129,56 @@ class AddReplyView(View):
 
         except json.JSONDecodeError:
             return JsonResponse({"error": "Invalid JSON data."}, status=400)
+        
 
+@login_required(login_url='login')
+def moderator_homepage(request):
+    context = {}
+
+    if ForumModerator.objects.filter(user=request.user).exists():
+        pass
+    else:
+        return redirect("homepage")
+
+    posts = ForumPost.objects.all()
+    context['posts'] = posts
+
+    return render(request, 'forumPages/moderatorDashboard/home.html', context)
+
+@login_required(login_url='login')
+def review_forum_post(request):
+    
+    if not ForumModerator.objects.filter(user=request.user).exists():
+        return redirect('forum_homepage')
+
+    context = {}
+
+    post_id = request.GET.get('post_id')
+    
+    if post_id is not None:
+        post_id = int(post_id)
+        post = ForumPost.objects.get(id=post_id)
+        context['post'] = post
+        print('here am I')
+    else:
+        return redirect('forum_homepage')
+
+    return render(request, 'forumPages/moderatorDashboard/reviewPost.html', context)
+
+@csrf_exempt
+def approve_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(ForumPost, id=post_id)
+        post.approved = True
+        post.save()
+        return JsonResponse({'success': True, 'message': 'Post approved successfully'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})
+
+@csrf_exempt
+def reject_post(request, post_id):
+    if request.method == 'POST':
+        post = get_object_or_404(ForumPost, id=post_id)
+        post.approved = False
+        post.save()
+        return JsonResponse({'success': True, 'message': 'Post rejected successfully'})
+    return JsonResponse({'success': False, 'message': 'Invalid request method'})

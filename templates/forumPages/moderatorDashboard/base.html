@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'forumStyling.css' %}">
+    <title>Forum Moderator Dashboard</title>
+</head>
+<body>
+    
+    <div class="moderator-dashboard-wrapper">
+        <div class="navbar-4">
+            <h1 class="logo">
+                LogoHere
+            </h1>
+        </div>
+        <div class="page-wrapper">
+            <div class="sidebar">
+                <div class="links">
+                    <a href="{% url 'moderator_homepage' %}">
+                        Dashboard
+                    </a>
+                    <a href="{% url 'forum_homepage' %}">
+                        Forum 
+                    </a>
+                </div>
+            </div>
+            <div class="moderator-page-wrapper">
+                {% block moderator_content %}
+                
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

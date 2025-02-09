@@ -21,7 +21,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Poppins';
+    font-family: 'Nunito';
 }
 
 .auth-pages-wrapper {
@@ -35,10 +35,24 @@
     display: flex;
     background-color: var(--background);      
     padding: .3rem 2rem;
+    justify-content: space-between;
 }
 
 .navbar-1 .logo {
     color: var(--primary-color);    
+}
+
+.navbar-1 .links {
+
+display: flex;
+flex-direction: row;
+gap: 15px;
+align-items: center;
+}
+.navbar-1 .links a {
+color: var(--primary-color);
+font-size: 17px;
+font-weight: 600;
 }
 
 /* LOGIN PAGE STYLING STARTS HERE  */
@@ -209,10 +223,26 @@
     padding: 2px 4px;
     box-shadow: 0px 0px 1px var(--secondary-color);
     border-radius: 2px;
-    
 }
 
 .approve-bg {
     background-color: var(--accent);
     color: white;
+}
+ 
+.user-posts-table .action-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .user-posts-wrapper .forum-btn-wrapper {
+    width: 100%;
+    padding: 2rem 0;
+    
 }

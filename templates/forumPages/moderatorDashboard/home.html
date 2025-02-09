@@ -1,0 +1,37 @@
+{% extends 'forumPages/moderatorDashboard/base.html' %}
+
+
+{% block moderator_content %}
+{% load static %}
+
+
+<h2 class="page-heading">
+    Moderator Panel
+</h2>
+
+
+<table class="pending-posts-table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{post.title}}</td>
+                {% if post.approved %}
+                <td><span class="status active">Active</span></td>
+                {% else %}
+                <td><span class="status pending">Pending</span></td>
+                {% endif %}
+                <td><a href="{% url 'review_post' %}?post_id={{post.id}}" class="action-btn">Review</button></td>
+            </tr>
+            {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

@@ -43,6 +43,17 @@
     color: var(--primary-color);
 }
 
+.navbar-3 .link {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.navbar-3 .links a {
+    color: var(--primary-color);
+    font-size: 17px;
+    font-weight: 600;
+}
+
 .navbar-3 .right-side .profile-info img {
     width: 2.5rem;
     height: 2.5rem;
@@ -318,6 +329,29 @@
     flex: 1;
 }
 
+.read-post-page-wrapper .right-side .posts {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.read-post-page-wrapper .right-side .posts .post {
+    width: 100%;
+    box-shadow: 0px 0px 1px var(--text-color);
+    color: var(--text-color);
+    padding: .7rem;
+    border-radius: 8px;
+}
+
+.read-post-page-wrapper .right-side .posts .post:hover {
+    background-color: var(--accent);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;   
+    font-family: 'Nunito';
+}
+
 .read-post-page-wrapper .post-replies {
     display: flex;
     width: 100%;
@@ -344,3 +378,195 @@
     font-weight: 700;
     font-size: 18px;
 }
+
+
+/* FORUM MODERATOR PAGES STYLING  */
+
+.moderator-dashboard-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+.moderator-dashboard-wrapper .navbar-4 {
+    width: 100%;
+    display: flex;
+    background-color: var(--background);      
+    padding: .3rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.moderator-dashboard-wrapper .navbar-4 .logo {
+    color: var(--primary-color);
+}
+
+.moderator-dashboard-wrapper .page-wrapper {
+    display: flex;
+    flex: 1; 
+    overflow: hidden; 
+}
+
+.moderator-dashboard-wrapper .sidebar {
+    width: 15rem;
+    background-color: var(--background);
+    overflow-y: auto; 
+    padding: 2rem;
+}
+
+.moderator-dashboard-wrapper .sidebar .links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.moderator-dashboard-wrapper .sidebar .links a {
+    color: var(--text-color);
+    
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.moderator-dashboard-wrapper .moderator-page-wrapper {
+    flex: 1; 
+    background-color: var(--page-bg, #fff); 
+    overflow-y: auto; 
+    padding: 1rem;
+}
+
+
+
+/* MODERATOR DASHBOARD HOMEPAGE STYLINGS STARTS HERE  */
+
+.page-heading {
+    color: var(--text-color);
+}
+
+.pending-posts-table {
+    width: 95%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+.pending-posts-table  thead {
+    background-color: var(--background);
+    color: var(--text-color);    
+  }
+
+.pending-posts-table  th, td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+  }
+
+.pending-posts-table  th {
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    font-size: 0.85rem;
+  }
+
+.pending-posts-table  tbody tr {
+    border-bottom: 1px solid #f1f1f1;
+    transition: background-color 0.3s;
+  }
+
+.pending-posts-table  tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+
+.pending-posts-table  td {
+    font-size: 1rem;
+    color: #333;
+  }
+
+.pending-posts-table  .status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+.pending-posts-table  .status.active {
+    background-color: #d1fae5;
+    color: #047857;
+  }
+
+.pending-posts-table  .status.pending {
+    background-color: #fef3c7;
+    color: #b45309;
+  }
+
+.pending-posts-table  .status.inactive {
+    background-color: #fde2e2;
+    color: #c53030;
+  }
+
+  .pending-posts-table  .action-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+
+  .pending-posts-table  .action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* REVIEW FORUM POST PAGE STYLING  */
+
+.content {
+    color: var(--text-color);
+    margin-top: 2rem;
+}
+
+.post-review-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 3rem;
+}
+
+.post-review-controls  .reject-btn  {
+    color: white;
+    background-color: #c53030;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.post-review-controls  .approve-btn  {
+    border-radius: 6px;
+    color: white;
+    background-color: var(--accent);
+    border: none;
+    outline: none;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,77 @@
+{% extends 'forumPages/moderatorDashboard/base.html' %}
+
+
+{% block moderator_content %}
+{% load static %}
+
+<h2 class="page-heading">
+    {{post.title}}
+</h2>
+
+<div class="content">
+    {{post.content|safe}}
+</div>
+
+<div class="post-review-controls">
+    <button class="review-btn approve-btn">Approve Post</button>
+    <button class="review-btn reject-btn">Reject</button>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const approveBtn = document.querySelector('.approve-btn');
+      const rejectBtn = document.querySelector('.reject-btn');
+    
+      // Extract the post ID from a custom attribute or a hidden element
+      const postId = "{{ post.id }}";
+    
+      // Approve Post
+      approveBtn.addEventListener('click', () => {
+        fetch(`{% url 'approve_post' post_id=post.id %}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+          },
+          body: JSON.stringify({ status: 'approve' })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Post approved successfully!');
+          } else {
+            alert('Failed to approve the post.');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    
+      // Reject Post
+      rejectBtn.addEventListener('click', () => {
+        fetch(`{% url 'reject_post' post_id=post.id %}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': '{{ csrf_token }}',
+          },
+          body: JSON.stringify({ status: 'reject' })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert('Post rejected successfully!');
+          } else {
+            alert('Failed to reject the post.');
+          }
+        })
+        .catch(error => console.error('Error:', error));
+      });
+    });
+    </script>
+    
+
+
+
+{% endblock %}

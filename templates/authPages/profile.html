@@ -24,6 +24,11 @@
     </div>
 
     <div class="user-posts-wrapper">
+        {% if user_is_moderator %}
+        <div class="forum-btn-wrapper">
+            <a href="{% url 'moderator_homepage' %}" class="dashboard-link-btn">Go to Moderator's Dashboard</a>
+        </div>
+        {% endif %}
         <h2>Your Forum Posts</h2>
         <table class="user-posts-table">
             <thead>
@@ -31,6 +36,7 @@
                     <th>Content</th>
                     <th>Timestamp</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,11 +46,12 @@
                     <td>{{ post.date_time|date:"Y-m-d H:i" }}</td>
                     <td>
                         {% if post.approve %}
-                            <span class="approve-bg">Approved</span>
+                        <span class="approve-bg">Approved</span>
                         {% else %}
-                            <span class="pending-bg">Pending</span>
+                        <span class="pending-bg">Pending</span>
                         {% endif %}
                     </td>
+                    <td><a href="{% url 'read_post' %}?post_id={{post.id}}" class="action-btn">Details</a></td>
                 </tr>
                 {% empty %}
                 <tr>
